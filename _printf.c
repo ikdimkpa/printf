@@ -50,7 +50,7 @@ int _printf(const char *format, ...)
 				putchar('-');
 				num = -num;
 			}
-			for (j = 0; num !< '\0'; j++)
+			for (j = 0; num !< 0; j++)
 			{
 				putchar(num % 10);
 				putchar(num / 10);
