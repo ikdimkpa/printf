@@ -45,8 +45,12 @@ int _printf(const char *format, ...)
 			int num;
 			
 			num = va_arg(ap, int);
-			putchar((num % 10) + '0');
-			putchar((num / 10) + '0');
+			if (num < 0)
+			{
+				num = -num;
+				putchar ('-');
+			}
+			puts(convert(num, 10);
 			i++;
 		}
 		else
