@@ -71,6 +71,13 @@ int _printf(const char *format, ...)
 			hex = va_arg(ap, unsigned int);
 			fputs(convert(hex, 16), stdout);
 		}
+		else if (format[i] == '%' && format[i + 1] == 'x')
+		{
+			unsigned int hex;
+
+			hex = va_arg(ap, unsigned int);
+			fputs(converts(hex, 16), stdout);
+		}
 		else if (format[i] == '%' && format[i + 1] == 'o')
 		{
 			unsigned int oct;
