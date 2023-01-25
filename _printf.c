@@ -66,13 +66,6 @@ int _printf(const char *format, ...)
 			unsigned int num;
 			
 			num = va_arg(ap, unsigned int);
-			if (num < 0)
-			{
-				num = -num;
-				continue;
-			}
-			else
-				continue;
 			fputs(convert(num, 10), stdout);
 			i++;
 		}
