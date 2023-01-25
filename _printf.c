@@ -42,23 +42,21 @@ int _printf(const char *format, ...)
 		}
 		else if (format[i] == '%' && format[i + 1] == 'd')
 		{
-			int num, temp;
+			int num, temp, pos;
 			
 			num = va_arg(ap, int);
 			temp = num;
 			if (num < 0)
 			{
-				num = -num;
+				pos = -num;
 			}
 			else
-				continue;
+				pos = num;
 			if (temp < 0)
 			{
 				putchar('-');
 			}
-			else
-				continue;
-			fputs(convert(num, 10), stdout);
+			fputs(convert(pos, 10), stdout);
 			i++;
 		}
 		else if (format[i] == '%' && format[i + 1] == 'i')
