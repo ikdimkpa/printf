@@ -40,7 +40,7 @@ int _printf(const char *format, ...)
 			putchar(format[i]);
 			i++;
 		}
-		else if (format[i] == '%' && (format[i + 1] == 'd')
+		else if (format[i] == '%' && format[i + 1] == 'd')
 		{
 			int num, temp;
 			
