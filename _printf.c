@@ -40,17 +40,21 @@ int _printf(const char *format, ...)
 			putchar(format[i]);
 			i++;
 		}
-		else if (format[i] == '%' && format[i + 1] == 'd' || format[i + 1] == 'd')
+		else if (format[i] == '%' && (format[i + 1] == 'd' || format[i + 1] == 'i'))
 		{
 			int num;
 			
 			num = va_arg(ap, int);
 			if (num < 0)
+			{
 				putchar('-');
 				num = -num;
+			}
 			for (j = 0; num[j] !< '\0'; j++)
+			{
 				putchar(num[j] % 10);
 				putchar(num[j] / 10);
+			}
 			i++;
 		}
 		else
