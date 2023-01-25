@@ -37,7 +37,10 @@ int _printf(const char *format, ...)
 		}
 		else if (format[i] == '%' && format[i + 1] == 'r')
 		{
-			putchar(format[i]);
+			strings = va_arg(ap, char *);
+			rev = rev_string(*string):
+			for (j = 0; rev[j] != '\0'; j++)
+				putchar(rev[j]);
 			i++;
 		}
 		else if (format[i] == '%' && format[i + 1] == 'd')
