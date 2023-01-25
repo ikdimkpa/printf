@@ -52,12 +52,8 @@ int _printf(const char *format, ...)
 			}
 			else 
 				continue;
-
-			for (j = 0; num >= 0; j++)
-			{
-				putchar((num % 10) + '0');
-				putchar((num / 10) + '0');
-			}
+			putchar((num % 10) + '0');
+			putchar((num / 10) + '0');
 			i++;
 		}
 		else
