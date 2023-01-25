@@ -59,15 +59,25 @@ int _printf(const char *format, ...)
 		}
 		else if (format[i] == '%' && format[i + 1] == 'i')
 		{
-			 int num;
+			int num;
 			
 			num = va_arg(ap, int);
 			if (num < 0)
 			{
 				num = -num;
+				continue;
 			}
+			else
+				continue;
 			fputs(convert(num, 10), stdout);
 			i++;
+		}
+		else if (format[i] == '%' && format[i + 1] == 'x')
+		{
+			unsigned int hex;
+
+			hex = va_arg (arg, unsigned int);
+			fputs(convert(hex, 16), stdout);
 		}
 		else
 			putchar(format[i]);
