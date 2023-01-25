@@ -45,13 +45,6 @@ int _printf(const char *format, ...)
 			int num;
 			
 			num = va_arg(ap, int);
-			if (num < 0)
-			{
-				putchar('-');
-				num = -num;
-			}
-			else 
-				continue;
 			putchar((num % 10) + '0');
 			putchar((num / 10) + '0');
 			i++;
