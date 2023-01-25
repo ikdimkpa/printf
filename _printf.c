@@ -54,7 +54,7 @@ int _printf(const char *format, ...)
 				continue;
 			if (temp < 0)
 			{
-				putchar ('-');
+				putchar('-');
 			}
 			else
 				continue;
@@ -80,7 +80,7 @@ int _printf(const char *format, ...)
 		{
 			unsigned int hex;
 
-			hex = va_arg (ap, unsigned int);
+			hex = va_arg(ap, unsigned int);
 			fputs(convert(hex, 16), stdout);
 		}
 		else
