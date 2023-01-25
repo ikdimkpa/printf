@@ -38,7 +38,7 @@ int _printf(const char *format, ...)
 		else if (format[i] == '%' && format[i + 1] == 'r')
 		{
 			strings = va_arg(ap, char *);
-			*rev = *rev_string(*string):
+			rev = rev_string(*string):
 			for (j = 0; rev[j] != '\0'; j++)
 				putchar(rev[j]);
 			i++;
