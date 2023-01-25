@@ -58,6 +58,7 @@ int _printf(const char *format, ...)
 			i++;
 		}
 		else if (format[i] == '%' && format[i + 1] == 'i')
+		{
 			 int num;
 			
 			num = va_arg(ap, int);
@@ -67,6 +68,7 @@ int _printf(const char *format, ...)
 			}
 			fputs(convert(num, 10), stdout);
 			i++;
+		}
 		else
 			putchar(format[i]);
 		i++;
