@@ -55,8 +55,8 @@ int _printf(const char *format, ...)
 
 			for (j = 0; num >= 0; j++)
 			{
-				putchar(num % 10);
-				putchar(num / 10);
+				putchar((num % 10) + '0');
+				putchar((num / 10) + '0');
 			}
 			i++;
 		}
