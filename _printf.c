@@ -63,9 +63,9 @@ int _printf(const char *format, ...)
 		}
 		else if (format[i] == '%' && format[i + 1] == 'i')
 		{
-			int num;
+			unsigned int num;
 			
-			num = va_arg(ap, int);
+			num = va_arg(ap, unsigned int);
 			if (num < 0)
 			{
 				num = -num;
