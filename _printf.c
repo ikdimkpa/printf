@@ -11,7 +11,7 @@
 int _printf(const char *format, ...)
 {
 	int i, j;
-	char *strings *rev;
+	char *strings, *rev;
 	va_list ap;
 
 	i = j = 0;
