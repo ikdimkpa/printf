@@ -6,7 +6,7 @@
  * @s: character
  * Return: Always 0.
  */
-void rev_string(char *s)
+char *(rev_string)(char *s)
 {
 	int i, j;
 	char r[1000];
@@ -26,4 +26,5 @@ void rev_string(char *s)
 		j++;
 	}
 	s[j++] = '\0';
+	return (s);
 }
