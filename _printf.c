@@ -4,8 +4,8 @@
 #include <stddef.h>
 #include "main.h"
 /**
- * main - check the code
- *
+ * _printf - the new function for printing
+ * @format: the first details
  * Return: Always 0.
  */
 int _printf(const char *format, ...)
