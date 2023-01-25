@@ -42,21 +42,18 @@ int _printf(const char *format, ...)
 		}
 		else if (format[i] == '%' && format[i + 1] == 'd')
 		{
-			int num, temp, pos;
+			int num;
 			
 			num = va_arg(ap, int);
-			temp = num;
 			if (num < 0)
 			{
-				pos = -num;
+				putchar('-');
+				fputs(convert(-num, 10), stdout);
 			}
 			else
-				pos = num;
-			if (temp < 0)
 			{
-				putchar('-');
+				fputs(convert(num, 10), stdout);
 			}
-			fputs(convert(pos, 10), stdout);
 			i++;
 		}
 		else if (format[i] == '%' && format[i + 1] == 'i')
@@ -73,6 +70,13 @@ int _printf(const char *format, ...)
 
 			hex = va_arg(ap, unsigned int);
 			fputs(convert(hex, 16), stdout);
+		}
+		else if (format[i] == '%' && format[i + 1] == 'o')
+		{
+			unsigned int oct;
+
+			oct = va_arg(ap, unsigned int);
+			fputs(convert(oct, 8), stdout);
 		}
 		else
 			putchar(format[i]);
