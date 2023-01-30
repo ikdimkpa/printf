@@ -79,7 +79,7 @@ int _printf(const char *format, ...)
 				    hex = va_arg(ap, unsigned int);
 				    fputs(convert(hex, 8), stdout);
 			    }
-			    default
+			    default:
 				    putchar(format[i]);
 			    i++;
 	}
