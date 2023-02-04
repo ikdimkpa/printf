@@ -1,87 +1,50 @@
-#include <stdio.h>
-#include <stdarg.h>
-#include <limits.h>
-#include <stddef.h>
 #include "main.h"
+
+void print_buffer(char buffer[], int *buff_ind);
+
 /**
- * _printf - the new function for printing
- * @format: the first details
- * Return: Always 0.
+ * _printf - Printf function
+ * @format: format.
+ * 
+ * Return: Printed chars.
  */
 int _printf(const char *format, ...)
 {
-	int i, j;
-	char *strings;
-	va_list ap;
+	int i, printed = 0, printed_chars = 0;
+	int flags, width, precision, size, buff_ind = 0;
+	va_list list;
+	char buffer[BUFF_SIZE];
 
-	i = j = 0;
-	va_start(ap, format);
-	while (format[i] != '\0')
+	if (format == NULL)
+		return (-1);
+	va_start(list, format);
+	for (i = 0; format && format[i] != '\0'; i++)
 	{
-		if (format[i] == '%' && format[i + 1] == 'c')
-		{
-			putchar(va_arg(ap, int));
-			i++;
-		}
-		else if (format[i] == '%' && format[i + 1] == 's')
-		{
-			strings = va_arg(ap, char *);
-			for (j = 0; strings[j] != '\0'; j++)
-				putchar(strings[j]);
-			i++;
-		}
-		else if (format[i] == '%' && format[i + 1] == '%')
-		{
-			putchar('%');
-			i++;
-		}
-		else if (format[i] == '%' && format[i + 1] == 'r')
-		{
-			putchar(format[i]);
-			i++;
-		}
-		else if (format[i] == '%' && format[i + 1] == 'd')
-		{
-			int num;
-			
-			num = va_arg(ap, int);
-			if (num < 0)
+		if (format[i] != '%')
 			{
-				putchar('-');
-				fputs(convert(-num, 10), stdout);
+				buffer[buff_ind++] = format[i];
+				if (buff_ind == BUFF_SIZE)
+					print_buffer(buffer, &buff_ind);
+				printed_chars++;
 			}
 			else
 			{
-				fputs(convert(num, 10), stdout);
+				print_buffer(buffer, &buff_ind);
+				flags = get_flags(format, &i);
+				width = get_width(format, &i, list);
+				precision = get_precision(format, &i, list);
+				size = get_size(format, &i);
+				++i;
+				printed = handle_print(format, &i, list, buffer,
+						flags, width, precision, size);
+				if (printed == -1)
+					return (-1);
+				printed_chars += printed;
 			}
-			i++;
-		}
-		else if (format[i] == '%' && format[i + 1] == 'i')
-		{
-			unsigned int num;
-			
-			num = va_arg(ap, unsigned int);
-			fputs(convert(num, 10), stdout);
-			i++;
-		}
-		else if (format[i] == '%' && format[i + 1] == 'x')
-		{
-			unsigned int hex;
-
-			hex = va_arg(ap, unsigned int);
-			fputs(convert(hex, 16), stdout);
-		}
-		else if (format[i] == '%' && format[i + 1] == 'o')
-		{
-			unsigned int oct;
-
-			oct = va_arg(ap, unsigned int);
-			fputs(convert(oct, 8), stdout);
-		}
-		else
-			putchar(format[i]);
-		i++;
 	}
-	va_end(ap);
-	return (0);
+
+		print_buffer(buffer, &buff_ind);
+		va_end(list);
+
+		return (printed_chars);
 }
